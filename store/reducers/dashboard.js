@@ -14,9 +14,11 @@ const dashboardReducer = (state = initState, action = {}) => {
 
   switch(type) {
     case HYDRATE : {
+      console.log('HYDRATE')
       return dashboard
     }
     case 'INIT' : {
+      console.log('INIT')
       return dashboard
     }
     default : return state;
