@@ -1,10 +1,12 @@
-import {applyMiddleware, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {createWrapper} from 'next-redux-wrapper';
 import thunk from "redux-thunk";
-import reducers from './reducers';
+import {HYDRATE} from 'next-redux-wrapper';
+import dashboard from './dashboard/reducer';
 
 const debug = process.env.NODE_ENV !== 'production';
 const middleware = [thunk];
+const reducers = {dashboard};
 
 const bindMiddleware = () => {
   if (debug) {
@@ -12,8 +14,24 @@ const bindMiddleware = () => {
     return composeWithDevTools(applyMiddleware(...middleware))
   }
   return applyMiddleware(...middleware)
+};
+
+const combinedReducer = combineReducers(reducers);
+
+const initReducer = (state, action) => {
+  const {
+    type = '',
+    payload = {}
+  } = action;
+
+  switch (type) {
+    default :
+      return combinedReducer(state, action);
+    case HYDRATE:
+      return {...state, ...payload};
+  }
 }
 
-const store = context => createStore(reducers, bindMiddleware());
+const initStore = context => createStore(initReducer, bindMiddleware());
 
-export const wrapper = createWrapper(store);
+export const wrapper = createWrapper(initStore);

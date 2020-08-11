@@ -1,4 +1,4 @@
-import {HYDRATE} from 'next-redux-wrapper';
+import {dashboardActionTypes} from './action';
 
 const initState = {
   user : {}
@@ -13,15 +13,10 @@ const dashboardReducer = (state = initState, action = {}) => {
   } = action;
 
   switch(type) {
-    case HYDRATE : {
-      console.log('HYDRATE')
+    case dashboardActionTypes.INIT :
       return dashboard
-    }
-    case 'INIT' : {
-      console.log('INIT')
-      return dashboard
-    }
-    default : return state;
+    default :
+      return state;
   }
 }
 
