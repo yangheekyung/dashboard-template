@@ -15,8 +15,18 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Sidebar = ({options}) => {
+  const style = useStyle(options);
+
+
   return (
-    <Drawer></Drawer>
+    <nav className={style.drawer}>
+      <Hidden smUp implementation={`js`}>
+
+      </Hidden>
+      <Hidden xsDown implementation={`js`}>
+        
+      </Hidden>
+    </nav>
   )
 } 
 
