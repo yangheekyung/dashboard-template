@@ -1,14 +1,13 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-import {AppBar, Toolbar, IconButton, Typography} from "@material-ui/core";
-import {Menu} from "@material-ui/icons";
+import { makeStyles, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import {Menu as MenuIcon} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-  appBar : ({sidebarWidth}) => ({
+  appBar : ({sidebar : {width}}) => ({
     [theme.breakpoints.up('sm')] : {
-      width : `calc(100% - ${sidebarWidth}px)`,
-      marginLeft : sidebarWidth
-    },
+      width : `calc(100% - ${width}px)`,
+      marginLeft : width
+    }
   }),
   menuButton : {
     marginRight: theme.spacing(2),
@@ -22,23 +21,20 @@ const Header = ({options}) => {
   const style = useStyles(options);
 
   return (
-    <AppBar className={style.appBar}>
+    <AppBar position="fixed" className={style.appBar}>
       <Toolbar>
         <IconButton
           color="inherit"
           edge="start"
-          aria-label="open drawer"
           className={style.menuButton}
-          // onClick={handleDrawerToggle}
         >
-          <Menu />
+          <MenuIcon/>
         </IconButton>
-        <Typography variant="h6" noWrap>
+        <Typography variant="h6">
           Dashboard
         </Typography>
-
       </Toolbar>
-  </AppBar>
+    </AppBar>
   )
 }
 

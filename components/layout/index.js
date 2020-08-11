@@ -24,7 +24,7 @@ const Layout = ({children, options = {
   const style = useStyles();
   return (
     <div className={style.root}>
-      {/* <Header options={options}/> */}
+      <Header options={options}/>
       {/* <Sidebar options={options}/> */}
       <main className={style.content}>
         <div className={style.toolbar}/>
