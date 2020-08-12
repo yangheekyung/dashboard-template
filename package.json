@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fontsource-roboto": "^2.1.4",
+    "immutability-helper": "^3.1.1",
     "next": "9.4.4",
     "next-redux-wrapper": "^6.0.2",
     "passport": "^0.4.1",

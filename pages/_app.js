@@ -4,6 +4,7 @@ import Head from "next/head";
 import Layout from '../components/layout';
 import {wrapper} from "../store";
 import {init} from '../store/dashboard/action';
+import {init as test} from '../store/test/action';
 import {CssBaseline} from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../librarys/material';
@@ -49,6 +50,7 @@ MyApp.getInitialProps = async (appContext) => {
   } = appContext
 
   dispatch(init(user));
+  dispatch(test(user));
   return await App.getInitialProps(appContext);
 }
 

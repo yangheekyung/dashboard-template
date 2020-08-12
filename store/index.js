@@ -3,10 +3,11 @@ import {createWrapper} from 'next-redux-wrapper';
 import thunk from "redux-thunk";
 import {HYDRATE} from 'next-redux-wrapper';
 import dashboard from './dashboard/reducer';
+import test from './test/reducer';
 
 const debug = process.env.NODE_ENV !== 'production';
 const middleware = [thunk];
-const reducers = {dashboard};
+const reducers = {dashboard, test};
 
 const bindMiddleware = () => {
   if (debug) {

@@ -11,21 +11,22 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  toolbar : theme.mixins.toolbar
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+  },
 }))
 
-const Layout = ({children, options = {
-  header : {},
-  sidebar : {
-    width : 240
-  },
-  main : {}
-}}) => {
+const Layout = ({children}) => {
   const style = useStyles();
+
   return (
     <div className={style.root}>
-      <Header options={options}/>
-      {/* <Sidebar options={options}/> */}
+      <Header/>
+      <Sidebar/>
       <main className={style.content}>
         <div className={style.toolbar}/>
         {children}

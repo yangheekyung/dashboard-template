@@ -1,14 +1,15 @@
 const prefix = 'DASHBOARD_';
 
-export const dashboardActionTypes = {
-  INIT : `${prefix}INIT`
+export const actionTypes = {
+  INIT : `${prefix}INIT`,
+  SIDEBAR_TOGGLE : `${prefix}SIDEBAR_TOGGLE`
 }
 
-export const init = (user) => (dispatch) => dispatch({
-  type : dashboardActionTypes.INIT,
-  payload : {
-    dashboard : {
-      user
-    }
-  }
+export const init = (user) => ({
+  type : actionTypes.INIT,
+  payload : user
+});
+
+export const sidebarToggle = () => ({
+  type : actionTypes.SIDEBAR_TOGGLE
 });
