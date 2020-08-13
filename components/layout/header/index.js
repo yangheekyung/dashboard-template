@@ -1,13 +1,13 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import cx from 'classnames';
 import { makeStyles, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import {Menu as MenuIcon} from "@material-ui/icons";
 import {sidebarToggle as sidebarToggleAction} from '../../../store/dashboard/action';
 
 const useStyles = makeStyles((theme) => ({
   appBar : () => ({
-    zIndex: theme.zIndex.drawer + 1
+    width: `calc(100% - ${theme.spacing(10)}px)`,
+    marginLeft:  theme.spacing(10)
   }),
   menuButton : {
     marginRight: theme.spacing(2),
@@ -24,7 +24,6 @@ const Header = () => {
   };
 
   return (
-    // <AppBar position="fixed" className={cx(style.appBar, {[style.appBarShift] : sidebarToggle })}>
     <AppBar position="fixed" className={style.appBar}>
       <Toolbar>
         <IconButton

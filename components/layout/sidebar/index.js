@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import * as Icons from '@material-ui/icons';
 import {sidebarToggle as sidebarToggleAction} from '../../../store/dashboard/action';
+import Test from '../../test';
 
 const useStyle = makeStyles((theme) => ({
   drawer : ({sidebar : {sidebarWidth}}) => ({
@@ -31,12 +32,12 @@ const useStyle = makeStyles((theme) => ({
     }),
   }),
   drawerClose : () => ({
+    width: theme.spacing(10),
+    overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1
+    })
   }),
   drawerPaper : ({sidebar : {sidebarWidth}}) => ({
     width : sidebarWidth
@@ -67,19 +68,20 @@ const Sidebar = () => {
   };
 
   const drawer = (
-    <List>
-      {
-        (layout?.sidebar?.list || []).map(({title, icon}, index) => {
-          const Icon = Icons[icon];
-          return (
-            <ListItem button key={index}>
-              <ListItemIcon><Icon/></ListItemIcon>
-              <ListItemText primary={title}/>
-            </ListItem>
-          )
-        })
-      }
-    </List>
+    // <List>
+    //   {
+    //     (layout?.sidebar?.list || []).map(({title, icon}, index) => {
+    //       const Icon = Icons[icon];
+    //       return (
+    //         <ListItem button key={index}>
+    //           <ListItemIcon><Icon/></ListItemIcon>
+    //           <ListItemText primary={title}/>
+    //         </ListItem>
+    //       )
+    //     })
+    //   }
+    // </List>
+    <Test/>
   );
 
   return (
