@@ -120,14 +120,14 @@ export default function GmailTreeView() {
   return (
     <TreeView
       className={classes.root}
-      defaultExpanded={['3']}
+      // defaultExpanded={['3']}
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
-      defaultEndIcon={<div style={{ width: 24 }} />}
+      // defaultEndIcon={<div style={{ width: 24 }} />}
     >
       <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
       <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
-      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label}>
+      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label} >
         <StyledTreeItem
           nodeId="5"
           labelText="Social"

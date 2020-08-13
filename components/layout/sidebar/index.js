@@ -37,7 +37,12 @@ const useStyle = makeStyles((theme) => ({
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    })
+    }),
+  }),
+  drawerHover : ({sidebar : {sidebarWidth}}) => ({
+    '&:hover' : {
+      width: sidebarWidth
+    }
   }),
   drawerPaper : ({sidebar : {sidebarWidth}}) => ({
     width : sidebarWidth
@@ -118,7 +123,8 @@ const Sidebar = () => {
           classes={{
             paper: cx({
               [style.drawerOpen] : sidebarToggle,
-              [style.drawerClose] : !sidebarToggle
+              [style.drawerClose] : !sidebarToggle,
+              [style.drawerHover] : !sidebarToggle
             }),
           }}
         >
