@@ -6,15 +6,47 @@ import {
   makeStyles,
   Hidden,
   Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography
+  Typography,
 } from '@material-ui/core';
+import {
+  TreeView,
+  TreeItem
+} from '@material-ui/lab';
 import * as Icons from '@material-ui/icons';
 import {sidebarToggle as sidebarToggleAction} from '../../../store/dashboard/action';
-import Test from '../../test';
+
+const menuUseStyle = makeStyles((theme) => ({
+  root : {
+    marginTop: 15
+  },
+  item : {
+    
+  }
+}));
+
+const Menu = (nodes = []) => {
+  const style = menuUseStyle();
+
+  const renderItem = (nodes, parentIndex=0) => (
+    nodes.map((node, childrenIndex) => {
+      const key = (parentIndex *10) + (childrenIndex + 1);
+      const Icon = Icons[node.icon];
+      return (
+        <TreeItem key={`${key}`} nodeId={`${key}`} 
+          icon={<Icon color="inherit" />}
+          label={node.title}>
+          {Array.isArray(node.children) ? renderItem(node.children, key) : null}
+        </TreeItem>
+      )
+    })
+  )
+
+  return (
+    <TreeView className={style.root}>
+      {renderItem(nodes)}
+    </TreeView>
+  )
+}
 
 const useStyle = makeStyles((theme) => ({
   drawer : ({sidebar : {sidebarWidth}}) => ({
@@ -72,23 +104,6 @@ const Sidebar = () => {
     dispatch(sidebarToggleAction())
   };
 
-  const drawer = (
-    // <List>
-    //   {
-    //     (layout?.sidebar?.list || []).map(({title, icon}, index) => {
-    //       const Icon = Icons[icon];
-    //       return (
-    //         <ListItem button key={index}>
-    //           <ListItemIcon><Icon/></ListItemIcon>
-    //           <ListItemText primary={title}/>
-    //         </ListItem>
-    //       )
-    //     })
-    //   }
-    // </List>
-    <Test/>
-  );
-
   return (
     <nav>
       <Hidden smUp implementation={`js`}>
@@ -110,7 +125,7 @@ const Sidebar = () => {
             </Typography>
           </div>
           <Divider />
-          {drawer}
+          {Menu(layout?.sidebar?.list)}
         </Drawer>
       </Hidden>
       <Hidden xsDown implementation={`js`}>
@@ -130,7 +145,7 @@ const Sidebar = () => {
         >
           <div className={style.toolbar}/>
           <Divider />
-          {drawer}
+          {Menu(layout?.sidebar?.list)}
         </Drawer>
       </Hidden>
     </nav>
