@@ -15,12 +15,13 @@ import {
 import * as Icons from '@material-ui/icons';
 import {sidebarToggle as sidebarToggleAction} from '../../../store/dashboard/action';
 
+
+//.MuiTreeItem-root.Mui-selected > .MuiTreeItem-content .MuiTreeItem-label
 const menuUseStyle = makeStyles((theme) => ({
-  root : {
-    marginTop: 15
-  },
-  item : {
-    
+  test : {
+    '& > .MuiTreeItem-content .MuiTreeItem-label' : {
+      background :'red'
+    }
   }
 }));
 
@@ -32,9 +33,19 @@ const Menu = (nodes = []) => {
       const key = (parentIndex *10) + (childrenIndex + 1);
       const Icon = Icons[node.icon];
       return (
-        <TreeItem key={`${key}`} nodeId={`${key}`} 
-          icon={<Icon color="inherit" />}
-          label={node.title}>
+        <TreeItem 
+          key={`${key}`} 
+          nodeId={`${key}`}
+          // collapseIcon={<Icons.ArrowDropDown/>}
+          // expandIcon={<Icons.ArrowRight/>}
+          // icon={<Icon color="inherit" />}
+          label={
+            node.title
+          }
+          classes={{
+            selected : style.test
+          }}
+        >
           {Array.isArray(node.children) ? renderItem(node.children, key) : null}
         </TreeItem>
       )
@@ -42,7 +53,12 @@ const Menu = (nodes = []) => {
   )
 
   return (
-    <TreeView className={style.root}>
+    <TreeView 
+      className={style.root}
+      // defaultCollapseIcon={<Icons.ArrowDropDown/>}
+      // defaultExpandIcon={<Icons.ArrowRight/>}
+      // defaultEndIcon={<Icons.AccessAlarm/>}
+    >
       {renderItem(nodes)}
     </TreeView>
   )
